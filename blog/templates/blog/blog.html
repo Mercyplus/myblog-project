@@ -1,0 +1,49 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Awesome blog</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'events/css/style.css' %}">
+</head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home' %}">My Awesome blog</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ml-auto">
+              <a class="nav-link" href="#">About me</a>
+              <a class="nav-link" href="#">Contacts</a>
+              <a class="nav-link active" href="#">Blog</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+<main role="main" class="pl-3">
+    <h1 class="pt-4 pb-5">Последние посты</h1>
+
+    {% for post in posts.all %}
+    <a href="{% url 'post_details' post.id %}"><h3>{{ post.title }}</h3></a>
+    <br/>
+    <img src="{{ post.image.url }}" height=300 width=300 class="img-fluid">
+    <br/>
+    <p>{{ post.get_summary }}</p>
+    <br/>
+    <br/>
+    {% endfor %}
+
+
+</main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  </body>
+</html>
